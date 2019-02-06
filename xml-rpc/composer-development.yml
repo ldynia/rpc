@@ -14,6 +14,8 @@ services:
   rpc-client:
     image: python:3.7.2-alpine
     container_name: rpc-client
+    depends_on:
+      - rpc-server
     volumes:
       - ./client.py:/src/client.py
     command : python /src/client.py
