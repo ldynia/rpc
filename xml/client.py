@@ -1,7 +1,6 @@
 #!/usr/local/bin/python
 
 import signal
-import signal
 import xmlrpc.client
 
 with xmlrpc.client.ServerProxy("http://rpc-server:80/") as proxy:

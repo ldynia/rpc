@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  rpc-server:
+    image: python:3.7.2-alpine
+    container_name: rpc-server
+    ports:
+      - 80:80
+    volumes:
+      - ./server.py:/src/server.py
+      - ./startup.server.sh:/src/startup.sh
+    entrypoint: ash /src/startup.sh
+
+  rpc-client:
+    image: python:3.7.2-alpine
+    container_name: rpc-client
+    depends_on:
+      - rpc-server
+    volumes:
+      - ./client.py:/src/client.py
+      - ./startup.client.sh:/src/startup.sh
+    entrypoint: ash /src/startup.sh
